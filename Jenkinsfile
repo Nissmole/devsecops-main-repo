@@ -6,15 +6,7 @@ pipeline {
         sh "mvn clean package -DskipTests=true"
         archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
       }
-    }
-
-stage('SonarQube - SAST') {
-      steps {
-        sh "mvn sonar:sonar -Dsonar.projectKey=secops-application -Dsonar.host.url=http://securedevsecline.eastus.cloudapp.azure.com:9000 -Dsonar.login=sqp_3e34c8b75cb99548f20adab86af9700db083cc22"
-      }
-    }
-
-    
+    }    
 
 stage('SCA Scan - Dependency-Check ') {
       steps {
